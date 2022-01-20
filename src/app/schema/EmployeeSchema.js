@@ -1,27 +1,36 @@
 const mongoose = require('mongose');
+const uuid = require('uuid');
 
-const useSchema = new mongoose.Schema({
-    name: {
+const EmployeeSchema = mongoose.Schema({
+    employee_id: {
         type: String,
-        require: true,
+        default: uuid.v1,
+        index: true,
+        mongoose: mongoose.ObjectId
     },
-    cpf: {
-        type: String,
-        require: true,
-    },
+    name: String,
+    cpf: String,
     office: {
         type: String,
-        required: true,
+        enum: ['gerente', 'vendedor', 'caixa']
     },
-
-    birthday: {
-        type: Date,
-        required: true,
+    birthday: Date,
+    situation: {
+        type: String,
+        enum: ['activate', 'deactivate'],
+        default: 'activate'
     },
-
     createdAt: {
         type: Date,
-        default: Date.now,
+        default: Date.now
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now
     }
 
-})
+});
+
+const Employee = mongoose.model('Employee', EmployeeSchema);
+
+module.exports = Employee;
