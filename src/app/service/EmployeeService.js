@@ -1,8 +1,8 @@
 const EmployeeRepository = require('../repository/EmployeeRepository')
 
 class EmployeeService {
-    async create(employee) {
-        const result = await EmployeeRepository.create(employee);
+    async create(payload) { //payload
+        const result = await EmployeeRepository.create(payload);
         return result;
     }
 }
