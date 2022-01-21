@@ -20,13 +20,16 @@ class EmployeeController {
         }
     }
 
-//GET    
-class EmployeeController {
-    async findAllEmployees(req,res) {
-        
-    }
-}
-
+    async find(req, res) {
+        try {
+            const name1 = req.query.name;
+            const office1 = req.query.name;
+            const data = await EmployeeService.find(name1, office1);
+            res.status(200).json({'employee':data})
+        }catch (error) {
+            return res.status(404).json(error)
+        }
+    }   
 }
 
 module.exports = new EmployeeController();
