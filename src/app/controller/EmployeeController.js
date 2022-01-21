@@ -1,5 +1,6 @@
 const EmployeeService = require('../service/EmployeeService');
 
+//POST
 class EmployeeController {
     async create(req, res) {
         try {
@@ -18,6 +19,14 @@ class EmployeeController {
             return res.status(500).json({ error })
         }
     }
+
+//GET    
+class EmployeeController {
+    async findAllEmployees(req,res) {
+        
+    }
+}
+
 }
 
 module.exports = new EmployeeController();
