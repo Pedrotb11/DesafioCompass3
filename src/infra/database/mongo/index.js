@@ -1,13 +1,14 @@
-const DB_USER = 'lojadonamaria'
-const DB_PASSWORD = encodeURIComponent('iPHws6kDHEuXvXYq')
-
 const mongoose = require('mongoose');
+require('dotenv').config();
+class Database {
+    constructor() {
+        this.connect();
+    }
 
-mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@apilojadonamaria.4z1dr.mongodb.net/lojadonamaria?retryWrites=true&w=majority`)
-.then(()=> { 
-    console.log('Database MongoDB CONNECTED!')
-    app.listen(3333)
-})
-.catch((err) => console.log(err))
+    connect() {
+        return mongoose.connect('mongodb://localhost:27017/employee')
+            .then(console.log('DB connected'))
+    }
+}
 
-module.exports = mongoose;
+module.exports = new Database().connect();
